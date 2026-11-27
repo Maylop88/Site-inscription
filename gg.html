@@ -60,7 +60,7 @@
     </nav>
 
     <!-- ==================== BANNIÈRE PRINCIPALE (HERO) ==================== -->
-    <header class="hero-pattern text-white pt-12 pb-24 sm:pt-16 sm:pb-28 px-4 sm:px-6 relative overflow-hidden">
+    <headers> { "Content-Type": "text/plain;charset=utf-8" }
         <div class="max-w-5xl mx-auto text-center relative z-10">
             <!-- Badge Caritatif -->
             <div class="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
@@ -134,19 +134,19 @@
 
             <!-- Carte 4 : Association Bénéficiaire -->
             <div class="bg-white rounded-2xl p-5 shadow-md border border-stone-200/80 flex items-start gap-4">
-                <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="utensils" class="w-6 h-6"></i>
+                <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                    <i data-lucide="heart-handshake" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Sur place</span>
-                    <h2 class="font-bold text-slate-900 text-base mt-0.5">Buvette & Restauration</h2>
-                    <p class="text-xs text-slate-500 mt-1">Parts de pizza et boissons au profit du Boccia Club Calais</p>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Action Caritative</span>
+                    <h2 class="font-bold text-slate-900 text-base mt-0.5">Boccia Club Calais</h2>
+                    <p class="text-xs text-slate-500 mt-1">100 % des inscriptions & buvette reversés au club</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== FORMULAIRE D'INSCRIPTION ==================== -->
+    <!-- ==================== FORMULAIRE D'INSCRIPTION CENTRÉ ==================== -->
     <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16">
         <section id="inscription" class="max-w-3xl mx-auto">
             
@@ -162,11 +162,11 @@
                     </span>
                 </div>
 
-                <!-- Alerte de statut de configuration Google Sheets (discrète si non configuré) -->
+                <!-- Bandeau d'information si SCRIPT_URL n'est pas encore renseignée -->
                 <div id="config-warning" class="hidden mb-5 p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2.5">
                     <i data-lucide="info" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
                     <div>
-                        <strong>Mode démonstration :</strong> Pensez à coller votre URL Google Apps Script dans la constante <code class="bg-amber-100 px-1 rounded font-mono">SCRIPT_URL</code> du fichier <code class="bg-amber-100 px-1 rounded font-mono">index.html</code> pour centraliser les réponses dans votre Google Sheet.
+                        <strong>Configuration requise :</strong> Collez l'URL <code class="bg-amber-100 px-1 rounded font-mono">/exec</code> de votre Google Apps Script dans la constante <code class="bg-amber-100 px-1 rounded font-mono">SCRIPT_URL</code> en bas de ce fichier <code class="bg-amber-100 px-1 rounded font-mono">index.html</code>.
                     </div>
                 </div>
 
@@ -244,7 +244,7 @@
                         </div>
                     </div>
 
-                    <!-- Niveau & Options -->
+                    <!-- Niveau & Prêt de boules -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
                         <div>
                             <label for="level" class="block text-sm font-semibold text-slate-700 mb-1.5">Catégorie / Niveau</label>
@@ -296,15 +296,15 @@
                 <ul class="space-y-3 text-sm text-slate-600">
                     <li class="flex items-start gap-2.5">
                         <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-1"></i>
-                        <span><strong>Formule doublettes (2 contre 2) :</strong> 3 boules par joueur. Phase de poules suivie des tableaux Principal et Consolante pour que tout le monde joue un maximum !</span>
+                        <span><strong>Formule doublettes (2 contre 2) :</strong> 3 boules par joueur, parties en 13 points. Phase de poules suivie des tableaux Principal et Consolante pour que tout le monde joue un maximum !</span>
                     </li>
                     <li class="flex items-start gap-2.5">
                         <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-1"></i>
-                        <span><strong>Pointage & Règlement (20 € / équipe) :</strong> Accueil dès 13h30 à la Halle des Courlis. Paiement sur place en espèces ou carte/Lydia avant le tirage au sort.</span>
+                        <span><strong>Pointage & Règlement (20 € / équipe) :</strong> Accueil dès 13h30 à la Halle des Courlis (Sangatte / Calais). Paiement sur place en espèces ou carte/Lydia avant le tirage au sort à 14h00.</span>
                     </li>
                     <li class="flex items-start gap-2.5">
                         <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-1"></i>
-                        <span><strong>Récompenses & Tombola :</strong> Coupes, lots offerts par nos commerçants partenaires de Calais/Sangatte et prix spécial fair-play.</span>
+                        <span><strong>Esprit sportif & Récompenses :</strong> Coupes, lots offerts par nos commerçants partenaires de Calais/Sangatte, prêt de triplettes possible et prix spécial fair-play.</span>
                     </li>
                 </ul>
             </div>
@@ -388,11 +388,40 @@
     <script>
         /**
          * ============================================================================
-         * CONFIGURATION GOOGLE SHEETS (GOOGLE APPS SCRIPT)
-         * Collez ici l'URL de votre déploiement Web Apps Script se terminant par /exec
+         * CODE GOOGLE APPS SCRIPT COMPLET À COLLER DANS EXTENSIONS > APPS SCRIPT :
+         * ============================================================================
+         * 
+         * function doPost(e) {
+         *   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+         *   var data = JSON.parse(e.postData.contents);
+         * 
+         *   sheet.appendRow([
+         *     new Date().toLocaleString("fr-FR"),
+         *     data.teamName || "",
+         *     data.captainName || "",
+         *     data.phone || "",
+         *     data.email || "",
+         *     data.partnerName || "",
+         *     data.level || "",
+         *     data.loanBalls || "Non",
+         *     "Non"
+         *   ]);
+         * 
+         *   return ContentService
+         *     .createTextOutput(JSON.stringify({ status: "success" }))
+         *     .setMimeType(ContentService.MimeType.JSON);
+         * }
+         * 
+         * function doGet() {
+         *   return ContentService.createTextOutput("API d'inscription opérationnelle !");
+         * }
+         * 
+         * ============================================================================
+         * URL DE DÉPLOIEMENT WEB APPS SCRIPT (SE TERMINANT PAR /exec) :
          * ============================================================================
          */
-        const SCRIPT_URL = "COLLEZ_ICI_VOTRE_URL_APPS_SCRIPT_EN_EXEC";
+        const SCRIPT_URL = "https://www.google.com/AKfycbzDkSve9BLMRGJVXDwn_1iB3PEHDplS70Lc7GlSYdV8swl4Uww5sJk4QmCDNDnk8ZzD7A/exec";
+
 
         // Initialisation au chargement de la page
         document.addEventListener("DOMContentLoaded", () => {
@@ -407,7 +436,7 @@
             }
         }
 
-        // Soumission du formulaire vers Google Sheets
+        // Soumission du formulaire en POST vers Google Sheets
         document.getElementById("registrationForm").addEventListener("submit", async function (e) {
             e.preventDefault();
 
@@ -450,7 +479,7 @@
                         body: JSON.stringify(payload)
                     });
                 } else {
-                    // Simulation d'un court délai réseau en mode démo
+                    // Simulation d'un court délai réseau si l'URL n'est pas encore collée
                     await new Promise(resolve => setTimeout(resolve, 600));
                 }
 
@@ -460,6 +489,7 @@
                 modal.classList.remove("hidden");
                 modal.classList.add("flex");
 
+                // Réinitialisation du formulaire
                 this.reset();
             } catch (err) {
                 console.error("Erreur d'envoi Google Sheets :", err);
