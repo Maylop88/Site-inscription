@@ -3,7 +3,7 @@
 // complète (elle doit commencer par https://script.google.com/macros/s/
 // et se terminer par /exec).
 // ============================================================================
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDkSve9BLMRGJVXDwn_1iB3PEHDplS70Lc7GlSYdV8swl4Uww5sJk4QmCDNDnk8ZzD7A/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyck8KWUpjQgxos6by1s8Z4UFPoWAMaYeOByslbiZtRveRWeMKJnTgwAdCM7ilRXOMeHQ/exec";
 
 
 document.addEventListener("DOMContentLoaded", () => {
