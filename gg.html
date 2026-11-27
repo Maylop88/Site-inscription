@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscriptions — Tournoi « Tu tires ou tu pointes »</title>
-    <!-- Tailwind CSS -->
+    <title>Tu tires ou tu pointes — Tournoi de Pétanque Caritatif | BUT GEA</title>
+    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
+        /* Motif subtil rappelant le terrain sablé */
         .hero-pattern {
             background-color: #0f172a;
-            background-image: radial-gradient(circle at 20% 20%, rgba(217, 119, 6, 0.22) 0%, transparent 45%),
-                              radial-gradient(circle at 85% 75%, rgba(5, 150, 105, 0.20) 0%, transparent 50%);
+            background-image: radial-gradient(rgba(245, 158, 11, 0.14) 1px, transparent 1px),
+                              radial-gradient(rgba(16, 185, 129, 0.1) 1px, #0f172a 1px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
         }
     </style>
 </head>
@@ -25,832 +28,464 @@
 
     <!-- ==================== BARRE DE NAVIGATION ==================== -->
     <nav class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 text-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
-            <!-- Logo & Titre -->
-            <a href="#" class="flex items-center gap-2.5 group">
-                <div class="bg-amber-600 group-hover:bg-amber-500 transition-colors p-2 rounded-xl text-white shadow-sm">
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <!-- Logo & Nom du tournoi -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="10" cy="13" r="7" />
                         <path d="M7 10c1.5-1 4.5-1 6 0" stroke-linecap="round" />
                         <path d="M6.5 14.5c2 1 5 1 7 0" stroke-linecap="round" />
-                        <circle cx="19" cy="6" r="2.5" fill="#fbbf24" stroke="none" />
+                        <circle cx="19" cy="6" r="2.5" fill="#fef08a" stroke="none" />
                     </svg>
                 </div>
                 <div>
-                    <span class="font-bold text-sm sm:text-base tracking-tight block leading-none">Tu tires ou tu pointes</span>
-                    <span class="text-[11px] text-amber-400 font-medium">Tournoi Caritatif • BUT GEA</span>
+                    <span class="font-extrabold text-base sm:text-lg tracking-tight block leading-none">Tu tires ou tu pointes</span>
+                    <span class="text-[11px] text-amber-400 font-medium">Projet Caritatif • BUT GEA Calais</span>
                 </div>
             </a>
 
             <!-- Liens rapides -->
             <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
                 <a href="#infos" class="hover:text-white transition-colors">Infos pratiques</a>
-                <a href="#inscription" class="hover:text-white transition-colors">S'inscrire</a>
-                <a href="#equipes" class="hover:text-white transition-colors">Équipes inscrites</a>
-                <a href="#reglement" class="hover:text-white transition-colors">Règlement</a>
+                <a href="#inscription" class="hover:text-white transition-colors">Inscrire ma doublette</a>
+                <a href="#reglement" class="hover:text-white transition-colors">Règlement & Buvette</a>
             </div>
 
-            <!-- Actions : Partager + Espace Organisateurs -->
-            <div class="flex items-center gap-2">
-                <button onclick="copyShareLink()" class="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs sm:text-sm font-medium px-3 py-2 rounded-xl transition-colors" title="Copier le lien d'inscription à partager">
-                    <i data-lucide="share-2" class="w-4 h-4 text-amber-400"></i>
-                    <span class="hidden sm:inline">Partager</span>
-                </button>
-                <button onclick="toggleAdminModal()" class="flex items-center gap-1.5 bg-amber-600/20 hover:bg-amber-600/30 text-amber-300 border border-amber-500/40 text-xs sm:text-sm font-medium px-3 py-2 rounded-xl transition-colors" title="Suivi organisateurs BUT GEA">
-                    <i data-lucide="shield-check" class="w-4 h-4"></i>
-                    <span class="hidden sm:inline">Orga GEA</span>
-                </button>
-            </div>
+            <!-- Bouton CTA -->
+            <a href="#inscription" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-sm transition-all">
+                S'inscrire (20 €)
+            </a>
         </div>
     </nav>
 
-    <!-- ==================== BANNIÈRE HÉROS ==================== -->
-    <header class="hero-pattern text-white pt-10 pb-14 sm:pt-14 sm:pb-20 px-4 sm:px-6 border-b border-slate-800">
-        <div class="max-w-5xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full mb-5">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Inscriptions ouvertes • Places limitées à 48 doublettes</span>
+    <!-- ==================== BANNIÈRE PRINCIPALE (HERO) ==================== -->
+    <header class="hero-pattern text-white pt-12 pb-24 sm:pt-16 sm:pb-28 px-4 sm:px-6 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <!-- Badge Caritatif -->
+            <div class="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+                <i data-lucide="heart-handshake" class="w-4 h-4 text-emerald-400"></i>
+                <span>100 % des bénéfices reversés au Boccia Club Calais</span>
             </div>
 
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4">
-                Tournoi de Pétanque Caritatif<br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-300 to-emerald-400">
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-5">
+                Grand Tournoi de Pétanque<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400">
                     « Tu tires ou tu pointes »
                 </span>
             </h1>
 
             <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-                Formez votre doublette et venez défendre vos couleurs au boulodrome couvert ! 
-                Un événement convivial organisé par les étudiants en <strong>BUT GEA</strong> dont l'intégralité des bénéfices est reversée au <strong>Boccia Club Calais</strong>.
+                Organisé par les étudiants du <strong>BUT GEA</strong>. Venez défier vos amis en doublettes à l'abri à la <strong>Halle des Courlis</strong> dans une ambiance conviviale et solidaire !
             </p>
 
-            <!-- Compteur de places en temps réel -->
-            <div class="max-w-md mx-auto bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 mb-8 backdrop-blur-xs">
-                <div class="flex items-center justify-between text-xs sm:text-sm mb-2">
-                    <span class="text-slate-300 font-medium flex items-center gap-1.5">
-                        <i data-lucide="users" class="w-4 h-4 text-amber-400"></i>
-                        <span>Doublettes inscrites en direct</span>
-                    </span>
-                    <span id="places-counter-text" class="font-bold text-white">0 / 48 équipes</span>
-                </div>
-                <div class="w-full h-2.5 bg-slate-700 rounded-full overflow-hidden">
-                    <div id="places-progress-bar" class="h-full bg-gradient-to-r from-amber-500 to-emerald-500 rounded-full transition-all duration-500" style="width: 0%"></div>
-                </div>
-                <p id="places-remaining-msg" class="text-[11px] text-emerald-400 mt-2 font-medium">
-                    Chargement des inscriptions en direct...
-                </p>
-            </div>
-
-            <!-- Boutons CTA -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a href="#inscription" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-500 text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-amber-900/30 transition-all text-base">
-                    <i data-lucide="pen-square" class="w-5 h-5"></i>
-                    <span>Inscrire ma doublette</span>
+            <!-- Boutons d'action -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+                <a href="#inscription" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-2xl shadow-lg shadow-amber-500/20 transition-all">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span>Inscrire notre doublette</span>
                 </a>
-                <a href="#equipes" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold px-6 py-3.5 rounded-xl transition-all text-base">
-                    <i data-lucide="list-checks" class="w-5 h-5 text-emerald-400"></i>
-                    <span>Voir les inscrits</span>
+                <a href="#reglement" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-800/90 hover:bg-slate-800 text-white border border-slate-700 font-semibold text-sm sm:text-base px-6 py-3.5 rounded-2xl transition-all">
+                    <i data-lucide="scroll-text" class="w-5 h-5 text-amber-400"></i>
+                    <span>Règlement & Buvette</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- ==================== CARTES INFOS PRATIQUES ==================== -->
-    <section id="infos" class="max-w-6xl mx-auto px-4 sm:px-6 -mt-8 relative z-20">
+    <!-- ==================== 4 CARTES D'INFORMATIONS PRATIQUES ==================== -->
+    <section id="infos" class="max-w-6xl mx-auto px-4 sm:px-6 -mt-14 relative z-20">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <!-- Date -->
-            <div class="bg-white rounded-2xl p-5 shadow-md border border-stone-200/80 flex items-start gap-3.5">
-                <div class="bg-amber-100 text-amber-700 p-2.5 rounded-xl shrink-0">
-                    <i data-lucide="calendar" class="w-5 h-5"></i>
+            <!-- Carte 1 : Date & Horaires -->
+            <div class="bg-white rounded-2xl p-5 shadow-md border border-stone-200/80 flex items-start gap-4">
+                <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                    <i data-lucide="calendar-days" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Date & Horaires</p>
-                    <p class="font-bold text-slate-900 text-sm sm:text-base mt-0.5">Mercredi 13 Janvier 2027</p>
-                    <p class="text-xs text-slate-500 mt-0.5">Pointage 13h00 • Jet du but 13h45</p>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Date & Horaires</span>
+                    <h2 class="font-bold text-slate-900 text-base mt-0.5">Mercredi 13 Janv. 2027</h2>
+                    <p class="text-xs text-slate-500 mt-1">Pointage dès 13h30 • Premier jet du bouchon à 14h00</p>
                 </div>
             </div>
 
-            <!-- Lieu -->
-            <div class="bg-white rounded-2xl p-5 shadow-md border border-stone-200/80 flex items-start gap-3.5">
-                <div class="bg-emerald-100 text-emerald-700 p-2.5 rounded-xl shrink-0">
-                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+            <!-- Carte 2 : Lieu -->
+            <div class="bg-white rounded-2xl p-5 shadow-md border border-stone-200/80 flex items-start gap-4">
+                <div class="w-11 h-11 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center shrink-0">
+                    <i data-lucide="map-pin" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Lieu Couvert</p>
-                    <p class="font-bold text-slate-900 text-sm sm:text-base mt-0.5">Halle des Courlis (Sangatte / Calais)</p>
-                    <p class="text-xs text-slate-500 mt-0.5">Boulodrome couvert à l'abri du froid</p>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Lieu Couvert</span>
+                    <h2 class="font-bold text-slate-900 text-base mt-0.5">Halle des Courlis</h2>
+                    <p class="text-xs text-slate-500 mt-1">Sangatte / Calais • Terrains abrités (toutes météos)</p>
                 </div>
             </div>
 
-            <!-- Format & Tarif -->
-            <div class="bg-white rounded-2xl p-5 shadow-md border border-stone-200/80 flex items-start gap-3.5">
-                <div class="bg-sky-100 text-sky-700 p-2.5 rounded-xl shrink-0">
-                    <i data-lucide="coins" class="w-5 h-5"></i>
+            <!-- Carte 3 : Format & Tarif -->
+            <div class="bg-white rounded-2xl p-5 shadow-md border border-stone-200/80 flex items-start gap-4">
+                <div class="w-11 h-11 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
+                    <i data-lucide="coins" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Format & Participation</p>
-                    <p class="font-bold text-slate-900 text-sm sm:text-base mt-0.5">Doublettes • 20 € / équipe</p>
-                    <p class="text-xs text-slate-500 mt-0.5">Soit 10 € / joueur (100% Boccia Club Calais)</p>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Format & Tarif</span>
+                    <h2 class="font-bold text-slate-900 text-base mt-0.5">Doublettes • 20 € / équipe</h2>
+                    <p class="text-xs text-slate-500 mt-1">Soit 10 € / joueur • Règlement sur place le jour J</p>
                 </div>
             </div>
 
-            <!-- Buvette & Lots -->
-            <div class="bg-white rounded-2xl p-5 shadow-md border border-stone-200/80 flex items-start gap-3.5">
-                <div class="bg-rose-100 text-rose-700 p-2.5 rounded-xl shrink-0">
-                    <i data-lucide="trophy" class="w-5 h-5"></i>
+            <!-- Carte 4 : Association Bénéficiaire -->
+            <div class="bg-white rounded-2xl p-5 shadow-md border border-stone-200/80 flex items-start gap-4">
+                <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                    <i data-lucide="utensils" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Ambiance & Récompenses</p>
-                    <p class="font-bold text-slate-900 text-sm sm:text-base mt-0.5">Lots, Buvette & Tombola</p>
-                    <p class="text-xs text-slate-500 mt-0.5">Nombreux lots commerçants locaux</p>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Sur place</span>
+                    <h2 class="font-bold text-slate-900 text-base mt-0.5">Buvette & Restauration</h2>
+                    <p class="text-xs text-slate-500 mt-1">Parts de pizza et boissons au profit du Boccia Club Calais</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==================== SECTION PRINCIPALE : FORMULAIRE & LISTE EN DIRECT ==================== -->
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-        <!-- COLONNE GAUCHE (7 cols) : FORMULAIRE D'INSCRIPTION DOUBLETTE -->
-        <section id="inscription" class="lg:col-span-7 bg-white rounded-3xl shadow-sm border border-stone-200 overflow-hidden">
-            <div class="bg-slate-900 text-white px-6 py-5 flex items-center justify-between">
-                <div>
-                    <h2 class="text-lg sm:text-xl font-bold flex items-center gap-2">
-                        <i data-lucide="user-plus" class="w-5 h-5 text-amber-400"></i>
-                        <span>Inscription d'une doublette</span>
-                    </h2>
-                    <p class="text-xs text-slate-400 mt-1">Remplissez les informations des 2 joueurs pour réserver votre place.</p>
+    <!-- ==================== FORMULAIRE D'INSCRIPTION ==================== -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16">
+        <section id="inscription" class="max-w-3xl mx-auto">
+            
+            <!-- Formulaire connecté à Google Sheets -->
+            <div class="bg-white rounded-3xl shadow-sm border border-stone-200 p-6 sm:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-5 mb-6 border-b border-stone-100">
+                    <div>
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">Inscription d'une doublette</h2>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Remplissez les informations ci-dessous pour réserver votre place.</p>
+                    </div>
+                    <span class="bg-amber-100 text-amber-900 text-xs font-extrabold px-3 py-1.5 rounded-xl border border-amber-200">
+                        20 € / équipe (sur place)
+                    </span>
                 </div>
-                <span class="text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-lg">
-                    20 € / équipe
-                </span>
-            </div>
 
-            <form id="registration-form" onsubmit="handleRegistrationSubmit(event)" class="p-6 sm:p-8 space-y-6">
-                
-                <!-- Nom de l'équipe -->
-                <div>
-                    <label for="team-name" class="block text-sm font-semibold text-slate-800 mb-1.5">
-                        Nom de votre doublette *
-                    </label>
-                    <div class="relative">
-                        <i data-lucide="flag" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
-                        <input type="text" id="team-name" required maxlength="45" placeholder="Ex: Les Tireurs d'Élite, Fanny & Co, Les Boules de Feu..."
-                            class="w-full pl-10 pr-4 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
+                <!-- Alerte de statut de configuration Google Sheets (discrète si non configuré) -->
+                <div id="config-warning" class="hidden mb-5 p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2.5">
+                    <i data-lucide="info" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
+                    <div>
+                        <strong>Mode démonstration :</strong> Pensez à coller votre URL Google Apps Script dans la constante <code class="bg-amber-100 px-1 rounded font-mono">SCRIPT_URL</code> du fichier <code class="bg-amber-100 px-1 rounded font-mono">index.html</code> pour centraliser les réponses dans votre Google Sheet.
                     </div>
                 </div>
 
-                <!-- Bloc Joueur 1 & Joueur 2 -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Joueur 1 (Capitaine) -->
-                    <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold uppercase tracking-wider text-amber-700 flex items-center gap-1.5">
-                                <span class="w-5 h-5 rounded-full bg-amber-600 text-white inline-flex items-center justify-center text-[11px]">1</span>
-                                Joueur 1 (Capitaine)
-                            </span>
+                <form id="registrationForm" class="space-y-5">
+                    <!-- Nom de l'équipe -->
+                    <div>
+                        <label for="teamName" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                            Nom de la doublette *
+                        </label>
+                        <div class="relative">
+                            <i data-lucide="trophy" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+                            <input type="text" id="teamName" required placeholder="Ex : Les Rois du Carreau, Fanny Club..."
+                                class="w-full pl-10 pr-4 py-2.5 bg-stone-50 border border-stone-300 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all">
                         </div>
-                        <div>
-                            <label for="p1-name" class="block text-xs font-medium text-slate-600 mb-1">Prénom & Nom *</label>
-                            <input type="text" id="p1-name" required maxlength="40" placeholder="Ex: Lucas Martin"
-                                class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm bg-white">
+                    </div>
+
+                    <!-- Bloc Joueur 1 (Capitaine) -->
+                    <div class="p-4 rounded-2xl bg-stone-50/90 border border-stone-200/80 space-y-4">
+                        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700">
+                            <span class="w-5 h-5 rounded-full bg-amber-600 text-white flex items-center justify-center text-[11px]">1</span>
+                            <span>Joueur 1 — Capitaine de l'équipe</span>
                         </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <div>
+                                <label for="captainName" class="block text-xs font-semibold text-slate-600 mb-1">Nom & Prénom *</label>
+                                <input type="text" id="captainName" required placeholder="Ex : Lucas Martin"
+                                    class="w-full px-3.5 py-2 bg-white border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div>
+                                <label for="captainRole" class="block text-xs font-semibold text-slate-600 mb-1">Spécialité</label>
+                                <select id="captainRole" class="w-full px-3 py-2 bg-white border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    <option value="Pointeur">Pointeur</option>
+                                    <option value="Tireur">Tireur</option>
+                                    <option value="Polyvalent / Milieu">Polyvalent / Milieu</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <div>
+                                <label for="phone" class="block text-xs font-semibold text-slate-600 mb-1">Téléphone mobile *</label>
+                                <input type="tel" id="phone" required placeholder="Ex : 06 12 34 56 78"
+                                    class="w-full px-3.5 py-2 bg-white border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-semibold text-slate-600 mb-1">Adresse e-mail *</label>
+                                <input type="email" id="email" required placeholder="Ex : lucas.martin@etu.univ.fr"
+                                    class="w-full px-3.5 py-2 bg-white border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloc Joueur 2 (Partenaire) -->
+                    <div class="p-4 rounded-2xl bg-stone-50/90 border border-stone-200/80 space-y-4">
+                        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-700">
+                            <span class="w-5 h-5 rounded-full bg-sky-600 text-white flex items-center justify-center text-[11px]">2</span>
+                            <span>Joueur 2 — Partenaire</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <div>
+                                <label for="partnerName" class="block text-xs font-semibold text-slate-600 mb-1">Nom & Prénom *</label>
+                                <input type="text" id="partnerName" required placeholder="Ex : Chloé Lefebvre"
+                                    class="w-full px-3.5 py-2 bg-white border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div>
+                                <label for="partnerRole" class="block text-xs font-semibold text-slate-600 mb-1">Spécialité</label>
+                                <select id="partnerRole" class="w-full px-3 py-2 bg-white border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    <option value="Tireur">Tireur</option>
+                                    <option value="Pointeur">Pointeur</option>
+                                    <option value="Polyvalent / Milieu">Polyvalent / Milieu</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Niveau & Options -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
                         <div>
-                            <label for="p1-role" class="block text-xs font-medium text-slate-600 mb-1">Spécialité favorite</label>
-                            <select id="p1-role" class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm bg-white">
-                                <option value="Pointeur">Pointeur</option>
-                                <option value="Tireur">Tireur</option>
-                                <option value="Milieu (Polyvalent)" selected>Milieu (Polyvalent)</option>
+                            <label for="level" class="block text-sm font-semibold text-slate-700 mb-1.5">Catégorie / Niveau</label>
+                            <select id="level" class="w-full px-3.5 py-2.5 bg-stone-50 border border-stone-300 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                <option value="Étudiants / IUT">Étudiants / IUT</option>
+                                <option value="Loisir / Amateurs">Loisir / Amateurs</option>
+                                <option value="Habitués / Licenciés">Habitués / Licenciés</option>
                             </select>
                         </div>
+
+                        <div class="pt-1 sm:pt-6">
+                            <label class="flex items-center gap-3 p-3 rounded-xl border border-stone-200 bg-stone-50 hover:bg-stone-100/70 cursor-pointer transition-colors">
+                                <input type="checkbox" id="loanBalls" class="w-4 h-4 rounded text-amber-600 focus:ring-amber-500">
+                                <span class="text-xs sm:text-sm font-medium text-slate-700">Besoin d'un prêt de boules sur place</span>
+                            </label>
+                        </div>
                     </div>
 
-                    <!-- Joueur 2 (Partenaire) -->
-                    <div class="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-1.5">
-                                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white inline-flex items-center justify-center text-[11px]">2</span>
-                                Joueur 2 (Partenaire)
+                    <!-- Case d'engagement -->
+                    <div class="pt-1">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" id="acceptRules" required class="w-4 h-4 mt-0.5 rounded text-amber-600 focus:ring-amber-500">
+                            <span class="text-xs text-slate-600 leading-relaxed">
+                                Nous acceptons le règlement du tournoi et nous nous engageons à régler les <strong>20 € de participation par équipe</strong> (soit 10 € par joueur) lors du pointage à la Halle des Courlis le mercredi 13 janvier 2027. *
                             </span>
-                        </div>
-                        <div>
-                            <label for="p2-name" class="block text-xs font-medium text-slate-600 mb-1">Prénom & Nom *</label>
-                            <input type="text" id="p2-name" required maxlength="40" placeholder="Ex: Camille Dupont"
-                                class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm bg-white">
-                        </div>
-                        <div>
-                            <label for="p2-role" class="block text-xs font-medium text-slate-600 mb-1">Spécialité favorite</label>
-                            <select id="p2-role" class="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm bg-white">
-                                <option value="Pointeur">Pointeur</option>
-                                <option value="Tireur" selected>Tireur</option>
-                                <option value="Milieu (Polyvalent)">Milieu (Polyvalent)</option>
-                            </select>
-                        </div>
+                        </label>
                     </div>
-                </div>
 
-                <!-- Contact & Profil -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label for="contact-email" class="block text-sm font-medium text-slate-700 mb-1">E-mail de confirmation *</label>
-                        <input type="email" id="contact-email" required placeholder="exemple@email.com"
-                            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
-                    </div>
-                    <div>
-                        <label for="contact-phone" class="block text-sm font-medium text-slate-700 mb-1">Téléphone (SMS rappel) *</label>
-                        <input type="tel" id="contact-phone" required placeholder="06 12 34 56 78"
-                            class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm">
-                    </div>
-                </div>
-
-                <!-- Catégorie / Niveau & Prêt de boules -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label for="team-category" class="block text-sm font-medium text-slate-700 mb-1">Catégorie / Niveau</label>
-                        <select id="team-category" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm bg-white">
-                            <option value="Étudiants IUT / Campus">Étudiants IUT / Campus</option>
-                            <option value="Loisir / Amateurs" selected>Loisir / Amateurs (Convivial)</option>
-                            <option value="Licenciés / Habitués">Licenciés / Habitués</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="need-boules" class="block text-sm font-medium text-slate-700 mb-1">Matériel (Triplettes de boules)</label>
-                        <select id="need-boules" class="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm bg-white">
-                            <option value="Nous avons nos boules" selected>Nous apportons nos propres boules</option>
-                            <option value="Prêt souhaité (1 jeu)">Besoin d'un prêt de boules (1 joueur)</option>
-                            <option value="Prêt souhaité (2 jeux)">Besoin d'un prêt de boules (2 joueurs)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Acceptation du règlement -->
-                <div class="bg-amber-50/70 border border-amber-200/80 rounded-xl p-3.5 flex items-start gap-3">
-                    <input type="checkbox" id="accept-rules" required class="mt-1 w-4 h-4 rounded text-amber-600 focus:ring-amber-500 cursor-pointer">
-                    <label for="accept-rules" class="text-xs text-slate-700 leading-relaxed cursor-pointer">
-                        Nous acceptons le <a href="#reglement" class="font-semibold text-amber-800 underline">règlement du tournoi</a> et nous engageons à régler les <strong>20 € d'inscription par doublette (10 € / joueur)</strong> sur place lors du pointage (13h00) au profit du Boccia Club Calais.
-                    </label>
-                </div>
-
-                <!-- Bouton de soumission -->
-                <button type="submit" id="submit-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-400 text-white font-bold py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-base">
-                    <i data-lucide="check-circle-2" class="w-5 h-5"></i>
-                    <span>Valider l'inscription de notre doublette</span>
-                </button>
-            </form>
-        </section>
-
-        <!-- COLONNE DROITE (5 cols) : LISTE DES ÉQUIPES INSCRITES EN TEMPS RÉEL -->
-        <section id="equipes" class="lg:col-span-5 bg-white rounded-3xl shadow-sm border border-stone-200 overflow-hidden flex flex-col">
-            <div class="px-6 py-5 border-b border-stone-200 bg-stone-50/80 flex items-center justify-between gap-2">
-                <div>
-                    <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                        <i data-lucide="users" class="w-5 h-5 text-emerald-600"></i>
-                        <span>Doublettes inscrites</span>
-                    </h2>
-                    <p class="text-xs text-slate-500 mt-0.5">Mise à jour automatique en temps réel</p>
-                </div>
-                <span id="badge-count" class="bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-full">
-                    0 / 48
-                </span>
-            </div>
-
-            <!-- Barre de recherche dans les équipes -->
-            <div class="p-3.5 border-b border-stone-100 bg-white">
-                <div class="relative">
-                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
-                    <input type="text" id="search-teams" oninput="renderTeamsList()" placeholder="Rechercher une équipe ou un joueur..."
-                        class="w-full pl-9 pr-3 py-2 text-xs sm:text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500">
-                </div>
-            </div>
-
-            <!-- Liste scrollable des doublettes -->
-            <div id="teams-list-container" class="divide-y divide-stone-100 max-h-[540px] overflow-y-auto">
-                <div class="p-8 text-center text-slate-400">
-                    <i data-lucide="loader-2" class="w-7 h-7 animate-spin mx-auto mb-2 text-amber-600"></i>
-                    <p class="text-sm">Connexion à la liste des inscrits...</p>
-                </div>
+                    <!-- Bouton d'envoi -->
+                    <button type="submit" id="submitBtn"
+                        class="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base py-3.5 px-6 rounded-2xl shadow-md transition-all disabled:opacity-60 disabled:cursor-not-allowed">
+                        <i data-lucide="send" class="w-4 h-4 text-amber-400"></i>
+                        <span id="submitBtnText">Valider l'inscription de notre doublette</span>
+                    </button>
+                </form>
             </div>
         </section>
 
+        <!-- ==================== SECTION RÈGLEMENT & BUVETTE / RESTAURATION ==================== -->
+        <section id="reglement" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Carte Règlement & Déroulement -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center">
+                        <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    </div>
+                    <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">Déroulement & Règlement</h2>
+                </div>
+                <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start gap-2.5">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-1"></i>
+                        <span><strong>Formule doublettes (2 contre 2) :</strong> 3 boules par joueur. Phase de poules suivie des tableaux Principal et Consolante pour que tout le monde joue un maximum !</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-1"></i>
+                        <span><strong>Pointage & Règlement (20 € / équipe) :</strong> Accueil dès 13h30 à la Halle des Courlis. Paiement sur place en espèces ou carte/Lydia avant le tirage au sort.</span>
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-1"></i>
+                        <span><strong>Récompenses & Tombola :</strong> Coupes, lots offerts par nos commerçants partenaires de Calais/Sangatte et prix spécial fair-play.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Carte Buvette & Restauration -->
+            <div class="bg-gradient-to-br from-amber-50 to-orange-50/70 rounded-3xl p-6 sm:p-8 border border-amber-200/80 shadow-sm">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shadow-xs">
+                        <i data-lucide="pizza" class="w-5 h-5"></i>
+                    </div>
+                    <h2 class="text-lg sm:text-xl font-extrabold text-slate-900">Buvette & Restauration sur place</h2>
+                </div>
+                <p class="text-sm text-slate-700 mb-4 leading-relaxed">
+                    Pour reprendre des forces entre deux mènes, l'équipe BUT GEA tient un stand buvette et restauration tout au long de l'après-midi :
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                    <div class="bg-white/90 p-3.5 rounded-2xl border border-amber-200/60 flex items-center gap-3">
+                        <span class="text-xl">🍕</span>
+                        <div>
+                            <strong class="block text-slate-900">Parts de pizza</strong>
+                            <span class="text-slate-500 text-xs">Chaudes & gourmandes</span>
+                        </div>
+                    </div>
+                    <div class="bg-white/90 p-3.5 rounded-2xl border border-amber-200/60 flex items-center gap-3">
+                        <span class="text-xl">🥤</span>
+                        <div>
+                            <strong class="block text-slate-900">Boissons fraîches & chaudes</strong>
+                            <span class="text-slate-500 text-xs">Sodas, eau, café, chocolat</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs text-amber-900 font-medium mt-4">
+                    L'intégralité des recettes de la buvette est également reversée au <strong>Boccia Club Calais</strong>.
+                </p>
+            </div>
+        </section>
     </main>
 
-    <!-- ==================== RÈGLEMENT SIMPLIFIÉ ==================== -->
-    <section id="reglement" class="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
-        <div class="bg-white rounded-3xl border border-stone-200 p-6 sm:p-8 shadow-xs">
-            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2 mb-4">
-                <i data-lucide="scroll-text" class="w-5 h-5 text-amber-600"></i>
-                <span>Règlement & Déroulement du Tournoi</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-slate-600">
-                <div class="bg-stone-50 p-4 rounded-2xl border border-stone-100">
-                    <h3 class="font-bold text-slate-900 mb-1.5 flex items-center gap-1.5">
-                        <span class="text-amber-600">01.</span> Formule Sportive
-                    </h3>
-                    <p class="text-xs leading-relaxed">
-                        Tournoi en <strong>doublettes formées</strong> (2 joueurs, 3 boules par joueur). Phases de poules le début d'après-midi suivies d'un tableau Principal et d'un tableau Consolante afin que chaque équipe joue au minimum 4 parties.
-                    </p>
-                </div>
-                <div class="bg-stone-50 p-4 rounded-2xl border border-stone-100">
-                    <h3 class="font-bold text-slate-900 mb-1.5 flex items-center gap-1.5">
-                        <span class="text-amber-600">02.</span> Règles FFPJP & Fair-Play
-                    </h3>
-                    <p class="text-xs leading-relaxed">
-                        Parties en <strong>13 points</strong> (11 points en poules selon l'affluence). Lancement du but entre 6 et 10 mètres. Esprit convivial exigé : le célèbre bisou à Fanny est fortement encouragé en cas de 13-0 !
-                    </p>
-                </div>
-                <div class="bg-stone-50 p-4 rounded-2xl border border-stone-100">
-                    <h3 class="font-bold text-slate-900 mb-1.5 flex items-center gap-1.5">
-                        <span class="text-amber-600">03.</span> Engagement Caritatif
-                    </h3>
-                    <p class="text-xs leading-relaxed">
-                        Participation de <strong>20 € par doublette</strong> (soit 10 € par joueur) à régler sur place le jour J avant 13h30. Restauration rapide, crêpes, boissons et tombola sur place au profit intégral du <strong>Boccia Club Calais</strong>.
-                    </p>
-                </div>
+    <!-- ==================== PIED DE PAGE ==================== -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 py-8 px-4 sm:px-6 text-xs sm:text-sm">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-center sm:text-left">
+                <p class="text-white font-bold">Tournoi « Tu tires ou tu pointes » — Mercredi 13 Janvier 2027</p>
+                <p class="text-xs text-slate-400 mt-0.5">Projet tutoré étudiant • BUT Gestion des Entreprises et des Administrations (GEA)</p>
+            </div>
+            <div class="text-center sm:text-right text-xs">
+                <p>Halle des Courlis (Sangatte / Calais)</p>
+                <p class="text-emerald-400 font-medium mt-0.5">Au profit du Boccia Club Calais</p>
             </div>
         </div>
-    </section>
-
-    <!-- ==================== PIED DE PAGE ==================== -->
-    <footer class="bg-slate-900 text-slate-400 py-8 px-4 sm:px-6 border-t border-slate-800 text-center text-xs">
-        <p class="font-semibold text-slate-200 mb-1">Projet Tutoré BUT GEA — « Tu tires ou tu pointes »</p>
-        <p>Halle des Courlis (Sangatte / Calais) • Au profit du Boccia Club Calais • Mercredi 13 Janvier 2027</p>
     </footer>
 
-    <!-- ==================== MODALE CONFIRMATION INSCRIPTION PARTICIPANT ==================== -->
-    <div id="success-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl shadow-2xl border border-stone-200 w-full max-w-md p-6 sm:p-7 text-center">
-            <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-                <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+    <!-- ==================== MODALE DE CONFIRMATION ==================== -->
+    <div id="confirmationModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 text-center shadow-2xl border border-stone-200 transform transition-all">
+            <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="check-circle-2" class="w-9 h-9"></i>
             </div>
-            <h3 class="text-xl font-extrabold text-slate-900 mb-2">Inscription enregistrée !</h3>
-            <p id="success-modal-text" class="text-sm text-slate-600 mb-5 leading-relaxed">
-                Votre doublette apparaît désormais dans la liste officielle des participants.
+            <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mb-2">Inscription enregistrée !</h3>
+            <p class="text-sm text-slate-600 mb-5 leading-relaxed">
+                La doublette <strong id="modalTeamName" class="text-slate-900"></strong> est bien inscrite au tournoi caritatif <em>« Tu tires ou tu pointes »</em>.
             </p>
-            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3.5 text-left text-xs text-amber-900 mb-6 space-y-1">
-                <p><strong>Rappel Jour J :</strong> Mercredi 13 Janvier 2027 à 13h00 (Halle des Courlis)</p>
-                <p><strong>Règlement sur place :</strong> 20 € par doublette à la table de marque</p>
+            <div class="bg-stone-50 rounded-2xl p-4 text-left text-xs text-slate-600 space-y-1.5 border border-stone-200 mb-6">
+                <p>📅 <strong>Date :</strong> Mercredi 13 janvier 2027 à 13h30</p>
+                <p>📍 <strong>Lieu :</strong> Halle des Courlis (Sangatte / Calais)</p>
+                <p>💶 <strong>Participation :</strong> 20 € par équipe à régler sur place</p>
             </div>
-            <button onclick="closeSuccessModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition-colors">
-                Parfait, merci !
+            <button onclick="closeConfirmationModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-sm transition-colors">
+                Parfait, à bientôt sur le terrain !
             </button>
         </div>
     </div>
 
-    <!-- ==================== MODALE ESPACE ORGANISATEURS (SUIVI BUT GEA) ==================== -->
-    <div id="admin-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl shadow-2xl border border-stone-200 w-full max-w-3xl overflow-hidden flex flex-col max-h-[90vh]">
-            <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between shrink-0">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="shield-check" class="w-5 h-5 text-amber-400"></i>
-                    <h3 class="font-bold text-base sm:text-lg">Espace Organisateurs — Suivi BUT GEA</h3>
-                </div>
-                <button onclick="toggleAdminModal()" class="text-slate-400 hover:text-white p-1 rounded-lg">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-            </div>
-
-            <!-- Écran de déverrouillage simple (Code équipe GEA : 2027) -->
-            <div id="admin-lock-screen" class="p-8 text-center">
-                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mx-auto mb-3">
-                    <i data-lucide="lock" class="w-6 h-6"></i>
-                </div>
-                <h4 class="text-base font-bold text-slate-900 mb-1">Accès réservé à l'équipe projet GEA</h4>
-                <p class="text-xs text-slate-500 mb-4">Entrez le code organisateur pour voir les contacts, le pointage paiement et exporter en CSV (code par défaut : <strong>2027</strong>).</p>
-                <div class="max-w-xs mx-auto flex gap-2">
-                    <input type="password" id="admin-pin" placeholder="Code (ex: 2027)" class="flex-1 px-3.5 py-2 border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
-                    <button onclick="unlockAdmin()" class="bg-amber-600 hover:bg-amber-500 text-white font-semibold px-4 py-2 rounded-xl text-sm">
-                        Ouvrir
-                    </button>
-                </div>
-                <p id="admin-pin-error" class="text-xs text-rose-600 mt-2 hidden">Code incorrect. Indice : 2027</p>
-            </div>
-
-            <!-- Tableau de bord organisateur déverrouillé -->
-            <div id="admin-dashboard" class="hidden flex-1 overflow-hidden flex flex-col">
-                <div class="p-4 bg-stone-50 border-b border-stone-200 flex flex-wrap items-center justify-between gap-3 shrink-0">
-                    <div class="flex flex-wrap items-center gap-3 text-xs">
-                        <span class="bg-white border border-stone-200 px-3 py-1.5 rounded-lg font-semibold text-slate-700">
-                            Total : <strong id="admin-total-teams" class="text-slate-900">0</strong> doublettes
-                        </span>
-                        <span class="bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg font-semibold text-emerald-800">
-                            Encaissé / Prévu : <strong id="admin-collected-revenue">0 €</strong> / <strong id="admin-expected-revenue">0 €</strong>
-                        </span>
-                        <span class="bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-lg font-semibold text-amber-800">
-                            Prêts boules : <strong id="admin-boules-count">0</strong>
-                        </span>
-                    </div>
-                    <button onclick="exportTeamsCSV()" class="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold px-3.5 py-2 rounded-xl transition-colors">
-                        <i data-lucide="download" class="w-4 h-4 text-emerald-400"></i>
-                        <span>Exporter Excel / CSV</span>
-                    </button>
-                </div>
-
-                <div class="flex-1 overflow-auto p-4">
-                    <table class="w-full text-left border-collapse text-xs">
-                        <thead>
-                            <tr class="border-b border-stone-200 text-slate-500 uppercase">
-                                <th class="py-2 px-2">#</th>
-                                <th class="py-2 px-2">Doublette</th>
-                                <th class="py-2 px-2">Joueurs</th>
-                                <th class="py-2 px-2">Contact</th>
-                                <th class="py-2 px-2">Matériel</th>
-                                <th class="py-2 px-2 text-center">Règlement 20€</th>
-                                <th class="py-2 px-2 text-right">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-table-body" class="divide-y divide-stone-100">
-                            <!-- Lignes injectées via JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <!-- ==================== BOÎTE DE MESSAGE D'ERREUR ==================== -->
+    <div id="errorToast" class="fixed bottom-4 right-4 bg-rose-600 text-white text-xs sm:text-sm font-medium px-4 py-3 rounded-2xl shadow-lg hidden items-center gap-2 z-50">
+        <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
+        <span id="errorToastText">Une erreur est survenue lors de l'envoi.</span>
     </div>
 
-    <!-- ==================== NOTIFICATION TOAST ==================== -->
-    <div id="toast" class="fixed bottom-4 right-4 bg-slate-900 text-white text-sm px-4 py-3 rounded-xl shadow-xl transform translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
-        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
-        <span id="toast-msg">Lien copié !</span>
-    </div>
+    <!-- ==================== LOGIQUE JAVASCRIPT & GOOGLE SHEETS ==================== -->
+    <script>
+        /**
+         * ============================================================================
+         * CONFIGURATION GOOGLE SHEETS (GOOGLE APPS SCRIPT)
+         * Collez ici l'URL de votre déploiement Web Apps Script se terminant par /exec
+         * ============================================================================
+         */
+        const SCRIPT_URL = "COLLEZ_ICI_VOTRE_URL_APPS_SCRIPT_EN_EXEC";
 
-    <!-- ==================== SCRIPT FIREBASE TEMPS RÉEL + LOGIQUE ==================== -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, doc, addDoc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Configuration fournie par l'environnement
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'tu-tires-ou-tu-pointes-gea';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-
-        let app = null;
-        let auth = null;
-        let db = null;
-        let currentUser = null;
-        let teams = [];
-        let isAdminUnlocked = false;
-        const MAX_TEAMS = 48;
-
-        // Initialisation de l'authentification et de la base partagée en temps réel
-        async function initApp() {
+        // Initialisation au chargement de la page
+        document.addEventListener("DOMContentLoaded", () => {
             lucide.createIcons();
+            checkScriptConfig();
+        });
 
-            if (!firebaseConfig) {
-                console.warn("Configuration cloud absente.");
-                renderTeamsList();
-                return;
-            }
-
-            try {
-                app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getFirestore(app);
-
-                // RÈGLE 3 : Toujours authentifier avant d'interroger la base
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-
-                onAuthStateChanged(auth, (user) => {
-                    currentUser = user;
-                    if (user) {
-                        listenToRegistrations();
-                    }
-                });
-            } catch (error) {
-                console.error("Erreur d'initialisation :", error);
-                showToast("Erreur de connexion au serveur d'inscription");
+        // Affiche un bandeau d'aide discrètement si SCRIPT_URL n'a pas encore été remplacée
+        function checkScriptConfig() {
+            if (!SCRIPT_URL || SCRIPT_URL.includes("COLLEZ_ICI")) {
+                document.getElementById("config-warning").classList.remove("hidden");
             }
         }
 
-        // Écoute en direct des doublettes inscrites par tous les participants
-        function listenToRegistrations() {
-            if (!db || !currentUser) return;
-
-            // RÈGLE 1 : Chemin public partagé pour que tous les participants voient et ajoutent des inscriptions
-            const teamsCol = collection(db, 'artifacts', appId, 'public', 'data', 'inscriptions_doublettes');
-
-            // RÈGLE 2 : Requête simple sans orderBy/where complexe, tri en mémoire JavaScript
-            onSnapshot(teamsCol, (snapshot) => {
-                const list = [];
-                snapshot.forEach((docSnap) => {
-                    list.push({ id: docSnap.id, ...docSnap.data() });
-                });
-
-                // Tri chronologique par date d'inscription (plus anciennes en premier pour attribuer le n° d'ordre)
-                list.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
-                teams = list;
-
-                updateCounters();
-                renderTeamsList();
-                if (isAdminUnlocked) {
-                    renderAdminTable();
-                }
-            }, (error) => {
-                console.error("Erreur d'écoute en temps réel :", error);
-            });
-        }
-
-        // Mise à jour des compteurs de places (X / 48 doublettes)
-        function updateCounters() {
-            const count = teams.length;
-            const remaining = Math.max(0, MAX_TEAMS - count);
-            const pct = Math.min(100, Math.round((count / MAX_TEAMS) * 100));
-
-            document.getElementById('places-counter-text').textContent = `${count} / ${MAX_TEAMS} équipes`;
-            document.getElementById('badge-count').textContent = `${count} / ${MAX_TEAMS}`;
-            document.getElementById('places-progress-bar').style.width = `${pct}%`;
-
-            const msgEl = document.getElementById('places-remaining-msg');
-            const submitBtn = document.getElementById('submit-btn');
-
-            if (remaining === 0) {
-                msgEl.textContent = "Tournoi complet ! Les 48 places sont réservées.";
-                msgEl.className = "text-[11px] text-rose-400 mt-2 font-semibold";
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = `<i data-lucide="lock" class="w-5 h-5"></i><span>Inscriptions complètes (48/48)</span>`;
-            } else {
-                msgEl.textContent = `Il reste ${remaining} place${remaining > 1 ? 's' : ''} disponible${remaining > 1 ? 's' : ''} — Inscrivez-vous vite !`;
-                msgEl.className = "text-[11px] text-emerald-400 mt-2 font-medium";
-                submitBtn.disabled = false;
-            }
-            lucide.createIcons();
-        }
-
-        // Soumission du formulaire d'inscription par un participant
-        window.handleRegistrationSubmit = async function(e) {
+        // Soumission du formulaire vers Google Sheets
+        document.getElementById("registrationForm").addEventListener("submit", async function (e) {
             e.preventDefault();
-            if (!db || !currentUser) {
-                showToast("Connexion en cours, veuillez patienter 2 secondes...");
-                return;
-            }
-            if (teams.length >= MAX_TEAMS) {
-                showToast("Désolé, le tournoi est complet (48/48 doublettes).");
-                return;
-            }
 
-            const submitBtn = document.getElementById('submit-btn');
+            const submitBtn = document.getElementById("submitBtn");
+            const submitBtnText = document.getElementById("submitBtnText");
+
+            const teamName = document.getElementById("teamName").value.trim();
+            const captainName = document.getElementById("captainName").value.trim();
+            const captainRole = document.getElementById("captainRole").value;
+            const phone = document.getElementById("phone").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const partnerName = document.getElementById("partnerName").value.trim();
+            const partnerRole = document.getElementById("partnerRole").value;
+            const level = document.getElementById("level").value;
+            const loanBalls = document.getElementById("loanBalls").checked ? "Oui" : "Non";
+
+            const payload = {
+                teamName: teamName,
+                captainName: `${captainName} (${captainRole})`,
+                phone: phone,
+                email: email,
+                partnerName: `${partnerName} (${partnerRole})`,
+                level: level,
+                loanBalls: loanBalls
+            };
+
+            // État de chargement sur le bouton
             submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i><span>Enregistrement en cours...</span>`;
-            lucide.createIcons();
-
-            const teamName = document.getElementById('team-name').value.trim();
-            const p1Name = document.getElementById('p1-name').value.trim();
-            const p1Role = document.getElementById('p1-role').value;
-            const p2Name = document.getElementById('p2-name').value.trim();
-            const p2Role = document.getElementById('p2-role').value;
-            const email = document.getElementById('contact-email').value.trim();
-            const phone = document.getElementById('contact-phone').value.trim();
-            const category = document.getElementById('team-category').value;
-            const needBoules = document.getElementById('need-boules').value;
+            submitBtnText.textContent = "Envoi de l'inscription en cours...";
 
             try {
-                const teamsCol = collection(db, 'artifacts', appId, 'public', 'data', 'inscriptions_doublettes');
-                await addDoc(teamsCol, {
-                    teamName,
-                    p1Name,
-                    p1Role,
-                    p2Name,
-                    p2Role,
-                    email,
-                    phone,
-                    category,
-                    needBoules,
-                    paid: false,
-                    createdAt: Date.now(),
-                    registeredBy: currentUser.uid
-                });
+                // Envoi réel vers Google Apps Script si l'URL est configurée
+                if (SCRIPT_URL && !SCRIPT_URL.includes("COLLEZ_ICI")) {
+                    await fetch(SCRIPT_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                } else {
+                    // Simulation d'un court délai réseau en mode démo
+                    await new Promise(resolve => setTimeout(resolve, 600));
+                }
 
-                // Réinitialisation du formulaire et affichage de la confirmation
-                document.getElementById('registration-form').reset();
-                document.getElementById('success-modal-text').innerHTML = `
-                    La doublette <strong>« ${escapeHtml(teamName)} »</strong> (${escapeHtml(p1Name)} & ${escapeHtml(p2Name)}) est officiellement inscrite au tournoi !
-                `;
-                document.getElementById('success-modal').classList.remove('hidden');
-                document.getElementById('success-modal').classList.add('flex');
-            } catch (error) {
-                console.error("Erreur lors de l'inscription :", error);
-                showToast("Une erreur est survenue, veuillez réessayer.");
+                // Affichage de la modale de confirmation
+                document.getElementById("modalTeamName").textContent = teamName;
+                const modal = document.getElementById("confirmationModal");
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
+
+                this.reset();
+            } catch (err) {
+                console.error("Erreur d'envoi Google Sheets :", err);
+                showError("Impossible d'envoyer l'inscription. Vérifiez votre connexion internet et réessayez.");
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = `<i data-lucide="check-circle-2" class="w-5 h-5"></i><span>Valider l'inscription de notre doublette</span>`;
-                lucide.createIcons();
+                submitBtnText.textContent = "Valider l'inscription de notre doublette";
             }
-        };
+        });
 
-        // Affichage de la liste publique des doublettes inscrites
-        window.renderTeamsList = function() {
-            const container = document.getElementById('teams-list-container');
-            const query = (document.getElementById('search-teams')?.value || '').toLowerCase().trim();
-
-            const filtered = teams.filter(t => {
-                if (!query) return true;
-                return (t.teamName || '').toLowerCase().includes(query) ||
-                       (t.p1Name || '').toLowerCase().includes(query) ||
-                       (t.p2Name || '').toLowerCase().includes(query);
-            });
-
-            if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="p-8 text-center text-slate-400">
-                        <i data-lucide="users" class="w-9 h-9 mx-auto mb-2 opacity-40"></i>
-                        <p class="text-sm font-medium text-slate-600">${teams.length === 0 ? 'Soyez la première doublette inscrite !' : 'Aucune équipe ne correspond à la recherche.'}</p>
-                        <p class="text-xs mt-1">${teams.length === 0 ? 'Remplissez le formulaire à gauche pour ouvrir le bal.' : 'Essayez avec un autre nom de joueur ou d\'équipe.'}</p>
-                    </div>
-                `;
-                lucide.createIcons();
-                return;
-            }
-
-            container.innerHTML = filtered.map((t) => {
-                const index = teams.findIndex(item => item.id === t.id) + 1;
-                return `
-                    <div class="p-4 hover:bg-amber-50/40 transition-colors flex items-start justify-between gap-3">
-                        <div class="flex items-start gap-3 min-w-0">
-                            <span class="w-7 h-7 rounded-xl bg-slate-900 text-amber-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                                #${index}
-                            </span>
-                            <div class="min-w-0">
-                                <p class="font-bold text-sm text-slate-900 truncate">${escapeHtml(t.teamName)}</p>
-                                <p class="text-xs text-slate-600 mt-0.5">
-                                    <span class="font-medium text-slate-800">${escapeHtml(t.p1Name)}</span> <span class="text-slate-400">(${escapeHtml(t.p1Role)})</span>
-                                    &amp;
-                                    <span class="font-medium text-slate-800">${escapeHtml(t.p2Name)}</span> <span class="text-slate-400">(${escapeHtml(t.p2Role)})</span>
-                                </p>
-                                <span class="inline-block mt-1.5 text-[10px] font-medium bg-stone-100 text-slate-600 border border-stone-200 px-2 py-0.5 rounded-md">
-                                    ${escapeHtml(t.category || 'Loisir')}
-                                </span>
-                            </div>
-                        </div>
-                        <span class="text-[11px] font-semibold px-2 py-1 rounded-lg shrink-0 ${t.paid ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'}">
-                            ${t.paid ? 'Confirmée ✓' : 'Inscrite'}
-                        </span>
-                    </div>
-                `;
-            }).join('');
-            lucide.createIcons();
-        };
-
-        // ==================== ESPACE ORGANISATEURS (BUT GEA) ====================
-        window.toggleAdminModal = function() {
-            const modal = document.getElementById('admin-modal');
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                if (isAdminUnlocked) renderAdminTable();
-            } else {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }
-            lucide.createIcons();
-        };
-
-        window.unlockAdmin = function() {
-            const pin = document.getElementById('admin-pin').value.trim();
-            if (pin === '2027') {
-                isAdminUnlocked = true;
-                document.getElementById('admin-lock-screen').classList.add('hidden');
-                document.getElementById('admin-dashboard').classList.remove('hidden');
-                document.getElementById('admin-dashboard').classList.add('flex');
-                renderAdminTable();
-            } else {
-                document.getElementById('admin-pin-error').classList.remove('hidden');
-            }
-        };
-
-        function renderAdminTable() {
-            document.getElementById('admin-total-teams').textContent = teams.length;
-            const paidCount = teams.filter(t => t.paid).length;
-            document.getElementById('admin-collected-revenue').textContent = `${paidCount * 20} €`;
-            document.getElementById('admin-expected-revenue').textContent = `${teams.length * 20} €`;
-            const boulesNeeded = teams.filter(t => t.needBoules && t.needBoules.includes('Prêt')).length;
-            document.getElementById('admin-boules-count').textContent = `${boulesNeeded} équipe(s)`;
-
-            const tbody = document.getElementById('admin-table-body');
-            if (teams.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-400">Aucune doublette inscrite pour le moment.</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = teams.map((t, idx) => `
-                <tr class="hover:bg-stone-50">
-                    <td class="py-2.5 px-2 font-bold text-slate-700">#${idx + 1}</td>
-                    <td class="py-2.5 px-2 font-bold text-slate-900">${escapeHtml(t.teamName)}</td>
-                    <td class="py-2.5 px-2 text-slate-600">${escapeHtml(t.p1Name)} &amp; ${escapeHtml(t.p2Name)}</td>
-                    <td class="py-2.5 px-2 text-slate-600">
-                        <div>${escapeHtml(t.email || '')}</div>
-                        <div class="text-[11px] text-slate-400">${escapeHtml(t.phone || '')}</div>
-                    </td>
-                    <td class="py-2.5 px-2 text-slate-600">${escapeHtml(t.needBoules || '')}</td>
-                    <td class="py-2.5 px-2 text-center">
-                        <button onclick="togglePaidStatus('${t.id}', ${!t.paid})" class="px-2.5 py-1 rounded-lg font-semibold text-[11px] transition-colors ${t.paid ? 'bg-emerald-600 text-white' : 'bg-stone-200 text-slate-700 hover:bg-amber-200'}">
-                            ${t.paid ? 'Payé (20 €)' : 'À encaisser'}
-                        </button>
-                    </td>
-                    <td class="py-2.5 px-2 text-right">
-                        <button onclick="deleteRegistration('${t.id}')" class="text-rose-600 hover:bg-rose-50 p-1.5 rounded-lg" title="Supprimer cette inscription">
-                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
-            lucide.createIcons();
+        function closeConfirmationModal() {
+            const modal = document.getElementById("confirmationModal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
         }
 
-        window.togglePaidStatus = async function(docId, newPaidState) {
-            if (!db || !currentUser) return;
-            try {
-                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'inscriptions_doublettes', docId);
-                await updateDoc(docRef, { paid: newPaidState });
-                showToast(newPaidState ? "Paiement de 20 € validé" : "Statut remis à encaisser");
-            } catch (e) {
-                console.error(e);
-            }
-        };
-
-        window.deleteRegistration = async function(docId) {
-            if (!db || !currentUser) return;
-            try {
-                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'inscriptions_doublettes', docId);
-                await deleteDoc(docRef);
-                showToast("Inscription supprimée");
-            } catch (e) {
-                console.error(e);
-            }
-        };
-
-        // Export CSV pour le tableau de suivi Excel / tirage des poules BUT GEA
-        window.exportTeamsCSV = function() {
-            if (teams.length === 0) {
-                showToast("Aucune équipe à exporter");
-                return;
-            }
-            const headers = ["N°", "Nom Doublette", "Joueur 1", "Poste J1", "Joueur 2", "Poste J2", "Email", "Telephone", "Categorie", "Materiel", "Paiement 20E"];
-            const rows = teams.map((t, i) => [
-                i + 1,
-                `"${(t.teamName || '').replace(/"/g, '""')}"`,
-                `"${(t.p1Name || '').replace(/"/g, '""')}"`,
-                `"${(t.p1Role || '').replace(/"/g, '""')}"`,
-                `"${(t.p2Name || '').replace(/"/g, '""')}"`,
-                `"${(t.p2Role || '').replace(/"/g, '""')}"`,
-                `"${(t.email || '').replace(/"/g, '""')}"`,
-                `"${(t.phone || '').replace(/"/g, '""')}"`,
-                `"${(t.category || '').replace(/"/g, '""')}"`,
-                `"${(t.needBoules || '').replace(/"/g, '""')}"`,
-                t.paid ? "Paye" : "A encaisser"
-            ]);
-
-            const csvContent = "\uFEFF" + [headers.join(";"), ...rows.map(r => r.join(";"))].join("\n");
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.setAttribute("href", url);
-            link.setAttribute("download", "inscriptions_tu_tires_ou_tu_pointes.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast("Fichier CSV téléchargé !");
-        };
-
-        // Utilitaires UI
-        window.closeSuccessModal = function() {
-            document.getElementById('success-modal').classList.add('hidden');
-            document.getElementById('success-modal').classList.remove('flex');
-        };
-
-        window.copyShareLink = function() {
-            const tempInput = document.createElement('input');
-            tempInput.value = window.location.href;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            showToast("Lien d'inscription copié ! Partagez-le aux joueurs.");
-        };
-
-        let toastTimer;
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-msg').textContent = msg;
-            toast.classList.remove('translate-y-24', 'opacity-0');
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => {
-                toast.classList.add('translate-y-24', 'opacity-0');
-            }, 2800);
+        function showError(msg) {
+            const toast = document.getElementById("errorToast");
+            document.getElementById("errorToastText").textContent = msg;
+            toast.classList.remove("hidden");
+            toast.classList.add("flex");
+            setTimeout(() => {
+                toast.classList.add("hidden");
+                toast.classList.remove("flex");
+            }, 4500);
         }
-
-        function escapeHtml(str) {
-            return String(str || '')
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-
-        initApp();
     </script>
 </body>
 </html>
