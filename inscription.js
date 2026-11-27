@@ -3,7 +3,8 @@
 // complète (elle doit commencer par https://script.google.com/macros/s/
 // et se terminer par /exec).
 // ============================================================================
-const SCRIPT_URL = "www.google.com/AKfycbwmv9pS8mlLKSTpXp22nACxlG-ZW54fwuAwN15S7sT8YBepmbHBT8mfvFmV44xzc-FRyg/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDkSve9BLMRGJVXDwn_1iB3PEHDplS70Lc7GlSYdV8swl4Uww5sJk4QmCDNDnk8ZzD7A/exec";
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registrationForm");
