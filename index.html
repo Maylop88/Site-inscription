@@ -60,7 +60,7 @@
     </nav>
 
     <!-- ==================== BANNIÈRE PRINCIPALE (HERO) ==================== -->
-    <headers> 
+    <header class="hero-pattern text-white px-4 sm:px-6 py-20 sm:py-28">
         <div class="max-w-5xl mx-auto text-center relative z-10">
             <!-- Badge Caritatif -->
             <div class="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
@@ -420,7 +420,7 @@
          * URL DE DÉPLOIEMENT WEB APPS SCRIPT (SE TERMINANT PAR /exec) :
          * ============================================================================
          */
-        const SCRIPT_URL = "https://www.google.com/AKfycbzDkSve9BLMRGJVXDwn_1iB3PEHDplS70Lc7GlSYdV8swl4Uww5sJk4QmCDNDnk8ZzD7A/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzDkSve9BLMRGJVXDwn_1iB3PEHDplS70Lc7GlSYdV8swl4Uww5sJk4QmCDNDnk8ZzD7A/exec";
 
 
         // Initialisation au chargement de la page
@@ -474,7 +474,7 @@
                         method: "POST",
                         mode: "no-cors",
                         headers: {
-                            "Content-Type": "application/json"
+                            "Content-Type": "text/plain;charset=UTF-8"
                         },
                         body: JSON.stringify(payload)
                     });
